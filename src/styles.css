@@ -4,6 +4,10 @@
 }
 body{
     font-family: Poppins,sans-serif;
+    background: linear-gradient(to top, #fff1eb 0%, #ace0f9 100%);
+    background-repeat: no-repeat;
+    background-size: cover;
+    filter: brightness(0.9);
 }
 span{
     display: block;
