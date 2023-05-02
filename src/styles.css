@@ -11,6 +11,9 @@ span{
 ul{
     list-style-type: none;
 }
+a{
+    text-decoration: none;
+}
 
 .main-container{
 padding:20px
@@ -116,4 +119,7 @@ form{
 }
 .units a{
     text-decoration: none;
+}
+.footer{
+  text-align: center;
 }
