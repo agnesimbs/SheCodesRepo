@@ -123,3 +123,11 @@ form{
 .footer{
   text-align: center;
 }
+.active {
+    color: rgb(33, 33, 33);
+    cursor: default;
+  }
+  
+  .active:hover {
+    text-decoration: none;
+  }

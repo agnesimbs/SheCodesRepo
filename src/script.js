@@ -37,30 +37,44 @@ totime.innerHTML=`${hours}:${minutes} ${timetest}`
 
 
 
-let convertedTemp=document.querySelector("#temp-degrees");
+//let convertedTemp=document.querySelector("#temp-degrees");
 
 
 
 
-function cToF(event){
+function celsiusToFahrenheit(event){
     event.preventDefault();
+    let temperatureElement = document.querySelector("#temp-degrees");
+
+    selectedCelsiusUnits.classList.remove("active");
+    selectedFahrenheitUnits.classList.add("active");
+    let fahrenheitTemperature = (tempInCity * 9) / 5 + 32;
+    temperatureElement.innerHTML = Math.round(fahrenheitTemperature);
     
     
-    convertedTemp.innerHTML="42";
+   
 
     
 }
 
-function fToC(event){
-    event.preventDefault();
+function fahrenheitToCelsius(event){
+  event.preventDefault();
+  let temperatureElement = document.querySelector("#temp-degrees");
+
+  selectedCelsiusUnits.classList.add("active");
+  selectedFahrenheitUnits.classList.remove("active");
+  temperatureElement.innerHTML = Math.round(tempInCity);
+  
    
-    convertedTemp.innerHTML=`29`;
+    //convertedTemp.innerHTML=`29`;
    
 }
+
+
 let selectedCelsiusUnits=document.querySelector("#celsius-link");
-selectedCelsiusUnits.addEventListener("click",fToC);
+selectedCelsiusUnits.addEventListener("click",fahrenheitToCelsius);
 let selectedFahrenheitUnits=document.querySelector("#fahrenheit-link");
-selectedFahrenheitUnits.addEventListener("click",cToF);
+selectedFahrenheitUnits.addEventListener("click",celsiusToFahrenheit);
 
 function search(event) {
     event.preventDefault();
@@ -85,12 +99,13 @@ function searchCity(city){
     axios.get(url).then(displayWeather);
 }
 
+let tempInCity = null;
 
 function displayWeather(response) {
     //city
  document.querySelector("#city").innerHTML = response.data.name;
  //temp
-  let tempInCity = Math.round(response.data.main.temp);
+  tempInCity = Math.round(response.data.main.temp);
   console.log(tempInCity);
   console.log(response);
   let realTimeTemperature = document.querySelector("#temp-degrees");
@@ -106,7 +121,7 @@ let realTimeHumidity=document.querySelector("#humidity");
 realTimeHumidity.innerHTML=`Humidity:${humidityInCity}%`;
 
 //wind
-let windInCity=Math.round(response.data.wind.speed) ;
+let windInCity=Math.round(response.data.wind.speed * 3.6) ;
 console.log(windInCity);
 let realTimeWind=document.querySelector("#wind");
 realTimeWind.innerHTML=`Wind:${windInCity}km/h`;
